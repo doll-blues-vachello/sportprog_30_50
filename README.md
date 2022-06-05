@@ -9,7 +9,7 @@
 Если выдаёт непонятные ошибки - проверьте, что api codeforces работает
 
 ## Запуск (50 баллов)
-java -jar build/libs/discord-1.0-SNAPSHOT-all.jar discord --token <bot token>
+``java -jar build/libs/discord-1.0-SNAPSHOT-all.jar discord --token <bot token>``
 
 ## Использование (50 баллов)
 - Добавить бота на сервер
