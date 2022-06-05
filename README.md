@@ -15,3 +15,6 @@
 - Добавить бота на сервер
 - Написать в текстовый канал имена пользователей через запятую без пробелов
 - Подождать, пока бот ответит
+
+## Запущенный бот
+[https://discord.com/api/oauth2/authorize?client_id=982682501585719307&permissions=3072&scope=bot](https://discord.com/api/oauth2/authorize?client_id=982682501585719307&permissions=3072&scope=bot)
