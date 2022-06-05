@@ -14,36 +14,6 @@ import dev.kord.gateway.PrivilegedIntent
 fun getSolvedTasks(submissions: List<CodeForcesSubmission>) = submissions.filter { it.verdict == "OK" }.map { it.problem }.toSet()
 
 
-//class ProblemsRepo(val client: CodeForcesClient){
-//    private var index = 0
-//    private var nextContest = 0
-//
-//    val problems = mutableListOf<CodeForcesProblem>()
-//
-//    lateinit var contests: List<CodeForcesContest>
-//
-//    suspend fun init(){
-//        println("Loading contests, this may take some time")
-//        contests = client.loadListOfContests()
-//        println("Loaded ${contests.size} contests")
-//    }
-//
-//
-//    fun reset(){
-//        index = 0
-//    }
-//
-//    suspend fun loadMore(){
-//
-//    }
-//
-//    suspend fun nextProblem(): CodeForcesProblem{
-//        if(index >= problems.size){
-//
-//        }
-//    }
-//}
-
 suspend fun getUnsolvedTask(client: CodeForcesClient, tasks: List<CodeForcesProblem>, users: List<String>): String{
     val solved = users.map {
         client.getUserSubmissions(it).result ?: return "ERROR: $it: not found"
@@ -57,7 +27,7 @@ suspend fun getUnsolvedTask(client: CodeForcesClient, tasks: List<CodeForcesProb
 }
 
 @OptIn(PrivilegedIntent::class)
-suspend fun main(){
+suspend fun mainDiscord(token: String){
     val client = CodeForcesClient()
 
     println("Loading list of problems")
@@ -66,7 +36,7 @@ suspend fun main(){
 
 
 
-    val kord = Kord("OTgyNjgyNTAxNTg1NzE5MzA3.G-3D8-.RgJCIwygsy1YhIAS_-mjgep_4Z3vJ22XJjGLls")
+    val kord = Kord(token)
 
     kord.on<MessageCreateEvent> {
         if (message.author?.isBot != false) return@on

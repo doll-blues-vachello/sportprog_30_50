@@ -1,25 +1,24 @@
 package ru.leadpogrommer.vk22.discord
 
-import io.ktor.client.*
-import io.ktor.client.call.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.plugins.*
-import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.client.request.*
-import io.ktor.serialization.kotlinx.json.*
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
+import kotlinx.cli.ArgParser
+import kotlinx.cli.ArgType
+import kotlinx.coroutines.runBlocking
 
+enum class Tasks(val action: String){
+    DISCORD("discord"),
+    CLI("cli")
+}
 
-
-
-
-suspend fun main(){
-    val client = CodeForcesClient()
-    while (true){
-        val line = readLine() ?: break
-        val data = client.userInfoToString(line.trim())
-        println(data)
+fun main(args: Array<String>){
+    val parser = ArgParser("sportprog")
+    val token by parser.option(ArgType.String)
+    val what by parser.argument(ArgType.Choice<Tasks>())
+    parser.parse(args)
+    runBlocking {
+        when(what){
+            Tasks.DISCORD -> mainDiscord(token?:"")
+            Tasks.CLI -> mainCli()
+        }
     }
+
 }

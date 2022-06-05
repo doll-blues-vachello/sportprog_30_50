@@ -4,6 +4,8 @@ val ktor_version: String by project
 plugins {
     kotlin("jvm") version "1.6.20"
     kotlin("plugin.serialization") version "1.6.20"
+    application
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 group = "org.example"
@@ -24,6 +26,11 @@ dependencies {
     implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
 
+
+    implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.4")
+
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.20")
+
     testImplementation(kotlin("test"))
 }
 
@@ -33,4 +40,8 @@ tasks.test {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+application{
+    mainClass.set("ru.leadpogrommer.vk22.discord.MainKt")
 }

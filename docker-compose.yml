@@ -1,0 +1,7 @@
+services:
+  bot:
+    build:
+      .
+    command:
+      - "--token ${TOKEN}"
+    restart: always
